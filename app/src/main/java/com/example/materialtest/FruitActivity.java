@@ -1,6 +1,7 @@
 package com.example.materialtest;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -33,8 +34,16 @@ public class FruitActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+
         }
+
         collapsingToolbar.setTitle(fruitName);
+        //collapsingToolbar.setExpandedTitleColor(0xFFFFFFFF);//改变图片展开界面的title颜色
+        //collapsingToolbar.setCollapsedTitleTextColor(0xFF000000);//改变图片收缩后的title颜色，这里输入的是八位16进制数，需要在本身的颜色16进制数前加FF------
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
+        collapsingToolbar.setCollapsedTitleTextColor(0xFF000000);
+
+
         Glide.with(this).load(fruitImageId).into(fruitImageView);
         String fruitContent = generateFruitContent(fruitName);
         fruitContentText.setText(fruitContent);

@@ -1,5 +1,6 @@
 package com.example.materialtest;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
@@ -15,9 +16,11 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,15 +29,16 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button login_register;
+
     private DrawerLayout mDrawerLayout;
 
 
-
-    private Fruit[] fruits = {new Fruit("Apple", R.mipmap.apple), new Fruit("Banana", R.mipmap.banana),
-            new Fruit("Orange", R.mipmap.orange), new Fruit("Watermelon", R.mipmap.watermelon),
-            new Fruit("Pear", R.mipmap.pear), new Fruit("Grape", R.mipmap.grape),
-            new Fruit("Pineapple", R.mipmap.pineapple), new Fruit("Strawberry", R.mipmap.strawberry),
-            new Fruit("Cherry", R.mipmap.cherry), new Fruit("Mango", R.mipmap.mango)};
+    private Fruit[] fruits = {new Fruit("出行安全", R.drawable.apple), new Fruit("旅游保险", R.drawable.banana),
+            new Fruit("鸿康保险", R.drawable.orange), new Fruit("出境保险", R.drawable.watermelon),
+            new Fruit("车险", R.drawable.pear), new Fruit("家庭保险", R.drawable.grape),
+            new Fruit("意外保险", R.drawable.pineapple), new Fruit("财产保险", R.drawable.strawberry),
+            new Fruit("儿童保险", R.drawable.cherry), new Fruit("学生保险", R.drawable.mango)};
 
     private List<Fruit> fruitList = new ArrayList<>();
 
@@ -50,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        //login_register = (Button) findViewById(R.id.login_register);
+        //login_register.setOnClickListener(new View.OnClickListener() {
+           // @Override
+            //public void onClick(View v) {
+              //  Intent intent = new Intent(MainActivity.this, Login.class);
+                //startActivity(intent);
+            //}
+        //});
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -59,10 +71,39 @@ public class MainActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                mDrawerLayout.closeDrawers();
+                switch (item.getItemId()){
+                    case R.id.login_register:
+                        Intent intent1 = new Intent(MainActivity.this, Login.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.nav_call:
+                        mDrawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_friends:
+                        Intent intent = new Intent(MainActivity.this, My_Information.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                }
                 return true;
+                //mDrawerLayout.closeDrawers();
+                //return true;
             }
         });
+
+        //定义header找到navView中的头部，再从头部找到这个button
+        View headerView = navView.getHeaderView(0);
+        login_register = (Button) headerView.findViewById(R.id.login_register);
+        login_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 refreshFruits();
             }
         });
+
     }
 
     private void refreshFruits() {
@@ -116,10 +158,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFruits() {
         fruitList.clear();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 200; i++) {
             Random random = new Random();
             int index = random.nextInt(fruits.length);
-            fruitList.add(fruits[index]);
+            if (!fruitList.contains(fruits[index])){
+                fruitList.add(fruits[index]);
+            }
+
         }
     }
 
@@ -147,5 +192,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
 
 }
