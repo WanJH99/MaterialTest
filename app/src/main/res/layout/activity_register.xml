@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
     android:weightSum="1">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,33 +23,32 @@
     </LinearLayout>
 
     <EditText
-
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/resetpwd_edit_name"
         android:layout_alignParentTop="true"
         android:hint="   请输入您的用户名"
-        android:layout_alignLeft="@+id/resetpwd_edit_pwd_new"
-        android:layout_alignStart="@+id/resetpwd_edit_pwd_new"
-        android:layout_alignRight="@+id/resetpwd_edit_pwd_new"
-        android:layout_alignEnd="@+id/resetpwd_edit_pwd_new" />
+        android:layout_alignLeft="@+id/user_password_second"
+        android:layout_alignStart="@+id/user_password_second"
+        android:layout_alignRight="@+id/user_password_second"
+        android:layout_alignEnd="@+id/user_password_second" />
 
 
     <EditText
+        android:id="@+id/user_password_first"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/resetpwd_edit_pwd_old"
         android:hint="  请输入您的密码"
-        android:layout_below="@+id/resetpwd_edit_name"
-        android:layout_alignRight="@+id/resetpwd_edit_name"
-        android:layout_alignEnd="@+id/resetpwd_edit_name"
-        android:layout_alignLeft="@+id/resetpwd_edit_name"
-        android:layout_alignStart="@+id/resetpwd_edit_name" />
+        android:layout_below="@+id/user_name"
+        android:layout_alignRight="@+id/user_name"
+        android:layout_alignEnd="@+id/user_name"
+        android:layout_alignLeft="@+id/user_name"
+        android:layout_alignStart="@+id/user_name" />
 
     <Button
         android:layout_width="fill_parent"
@@ -65,13 +63,12 @@
         android:layout_marginTop="10dp" />
 
     <EditText
-
+        android:id="@+id/user_password_second"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/resetpwd_edit_pwd_new"
-        android:layout_below="@+id/resetpwd_edit_pwd_old"
+        android:layout_below="@+id/user_password_first"
         android:layout_centerHorizontal="true"
         android:hint="  请确认您的密码" />
 
@@ -82,9 +79,9 @@
         android:id="@+id/register_btn_sure"
         android:textSize="20dp"
 
-        android:layout_below="@+id/resetpwd_edit_pwd_new"
-        android:layout_alignLeft="@+id/resetpwd_edit_pwd_new"
-        android:layout_alignStart="@+id/resetpwd_edit_pwd_new"
+        android:layout_below="@+id/user_password_second"
+        android:layout_alignLeft="@+id/user_password_second"
+        android:layout_alignStart="@+id/user_password_second"
         android:layout_marginTop="20dp" />
 
 </RelativeLayout>
