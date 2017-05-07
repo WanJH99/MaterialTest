@@ -22,7 +22,12 @@
         <activity android:name=".FruitActivity" />
         <activity android:name=".My_Information" />
         <activity android:name=".Login" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register"
+            android:label="用户注册"></activity>
+        <activity android:name=".Resetpwd"
+            android:label="密码修改"></activity>
+        <activity android:name=".User"
+            android:label="个人中心"/>
     </application>
 
 </manifest>
